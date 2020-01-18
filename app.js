@@ -180,6 +180,13 @@ app.post('/register',(req,res)=>{
 
 
 // *****************************************************
-app.listen(3030,function(){
-    console.log('Server is running on port 3030')
-})
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3030;
+}
+
+
+app.listen(port, function() {
+  console.log("Server started on port 3030");
+});

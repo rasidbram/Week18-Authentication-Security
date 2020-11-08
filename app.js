@@ -68,8 +68,8 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:3001/auth/google/secrets",
-      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+      callbackURL: process.env.REACT_CALLBACK_URI,
+      userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
@@ -121,7 +121,7 @@ app.post("/login", (req, res) => {
 });
 // ****************************************************
 app.get("/secrets", (req, res) => {
-  User.find({ }, (err, foundUsers) => {
+  User.find({}, (err, foundUsers) => {
     if (err) {
       console.log(err);
     } else {
